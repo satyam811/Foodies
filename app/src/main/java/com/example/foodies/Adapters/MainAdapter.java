@@ -1,6 +1,7 @@
 package com.example.foodies.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodies.DetailActivity;
 import com.example.foodies.Models.MainModel;
 import com.example.foodies.R;
 
@@ -42,6 +44,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewholder> {
         holder.mainName.setText(model.getName());
         holder.price.setText(model.getPrice());
         holder.description.setText(model.getDescription());
+
+        //using intent to transfer data in detail activity
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("image", model.getImage());
+                intent.putExtra("price", model.getPrice());
+                intent.putExtra("desc", model.getDescription());
+                intent.putExtra("name", model.getName());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
