@@ -22,17 +22,11 @@ public class OrderActivity extends AppCompatActivity {
         binding = ActivityOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<OrdersModel> list = new ArrayList<>();
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
-        list.add(new OrdersModel(R.drawable.burger, "Chees Burgur", "59", "1234884"));
+       // ArrayList<OrdersModel> list = new ArrayList<>();
+        //get data for select query
+        DBHelper helper = new DBHelper(this);
+        ArrayList<OrdersModel> list = helper.getOrders();
+
 
 
         OrdersAdapter adapter = new OrdersAdapter(list, this);

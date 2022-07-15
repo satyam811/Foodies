@@ -2,10 +2,15 @@ package com.example.foodies;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.foodies.Models.OrdersModel;
+
+import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -56,6 +61,25 @@ public class DBHelper extends SQLiteOpenHelper {
         }else{
             return true;
         }
+    }
 
+    //select query for show data in order activity
+    public ArrayList<OrdersModel> getOrders(){
+        ArrayList<OrdersModel> orders = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select id,foodName,image,price from orders", null);
+        if (cursor.moveToFirst()){
+            while (cursor.moveToNext()){
+                OrdersModel model = new OrdersModel();
+                model.setOrderNumber(cursor.getInt(0) + "");
+                model.setSoldItemName(cursor.getString(1));
+                model.setOrderImaage(cursor.getInt(2));
+                model.setPrice(cursor.getInt(3) + "");
+                orders.add(model);
+            }
+        }
+        cursor.close();
+        database.close();
+        return orders;
     }
 }
