@@ -48,6 +48,17 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean insertOrder(String name, String phone, int price, int image, String desc, String foodName, int quantity){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
+        /*
+        id =0
+        name =1
+        phone =2
+        price=3
+        image=4
+        desc=5
+        foodName =6
+        quantity = 7
+
+         */
         values.put("name", name);
         values.put("phone", phone);
         values.put("price", price);
@@ -81,5 +92,46 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return orders;
+    }
+
+    //show database detail in orderdetail
+    public Cursor getOrderById(int id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from orders where id = "+id, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+
+        return cursor;
+    }
+
+    //update
+    public boolean upadetOrder(String name, String phone, int price, int image, String desc, String foodName, int quantity,int id){
+        SQLiteDatabase database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        /*
+        id =0
+        name =1
+        phone =2
+        price=3
+        image=4
+        desc=5
+        foodName =6
+        quantity = 7
+
+         */
+        values.put("name", name);
+        values.put("phone", phone);
+        values.put("price", price);
+        values.put("image", image);
+        values.put("description", desc);
+        values.put("foodname", foodName);
+        values.put("quantity", quantity);
+        long row = database.update("orders",  values, "id="+id, null);
+        if (row <=0){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
