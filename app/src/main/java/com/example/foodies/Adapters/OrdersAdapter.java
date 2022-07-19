@@ -1,16 +1,20 @@
 package com.example.foodies.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodies.DBHelper;
 import com.example.foodies.DetailActivity;
 import com.example.foodies.Models.OrdersModel;
 import com.example.foodies.R;
@@ -50,6 +54,34 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder
                 intent.putExtra("id",Integer.parseInt(model.getOrderNumber()));
                 intent.putExtra("type",2);
                 context.startActivity(intent);
+            }
+        });
+
+        //delete for long press
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete Item")
+                        .setMessage("Are You Sure to delete this item")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DBHelper helper = new DBHelper(context);
+                                if (helper.deleteOrder(model.getOrderNumber()) > 0){
+                                    Toast.makeText(context,"Deleted",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+                return false;
             }
         });
     }
