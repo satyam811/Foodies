@@ -9,22 +9,46 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
 import com.example.foodies.Adapters.MainAdapter;
+import com.example.foodies.Adapters.SliderAdapter;
 import com.example.foodies.Models.MainModel;
 import com.example.foodies.databinding.ActivityMainBinding;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
     ActivityMainBinding binding;
+    //slider image
+    SliderView sliderView;
+    int[] images = {
+            R.drawable.burger,
+            R.drawable.sandwich,
+            R.drawable.pizza,
+            R.drawable.vadapav
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //slider view
+        sliderView = findViewById(R.id.slider);
+        SliderAdapter sliderAdapter = new SliderAdapter(images);
+        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        sliderView.startAutoCycle();
+
+
 
         ArrayList<MainModel> list = new ArrayList<>();
 
