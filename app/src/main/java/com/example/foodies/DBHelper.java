@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DBHelper extends SQLiteOpenHelper {
 
     final static String DBNAME = "mydatabase.db";
-    final static int DBVERSION = 1;
+    final static int DBVERSION = 2;
 
     public DBHelper(@Nullable Context context) {
         super(context, DBNAME, null, DBVERSION);  //constructor
@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "phone text," +
                         "price int," +
                         "image int," +
-                        "quantity int," +
+                      //  "quantity int," +
                         "description text," +
                         "foodname text)"
 
@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //insert function
-    public boolean insertOrder(String name, String phone, int price, int image, String desc, String foodName, int quantity){
+    public boolean insertOrder(String name, String phone, int price, int image, String desc, String foodName){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
         /*
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("image", image);
         values.put("description", desc);
         values.put("foodname", foodName);
-        values.put("quantity", quantity);
+       // values.put("quantity", quantity);
         long id = database.insert("orders", null, values);
         if (id <=0){
             return false;
@@ -78,7 +78,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<OrdersModel> getOrders(){
         ArrayList<OrdersModel> orders = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("Select id,foodName,image,price from orders", null);
+        Cursor cursor = database.rawQuery("Select id,foodname,image,price from orders", null);
         if (cursor.moveToFirst()){
             while (cursor.moveToNext()){
                 OrdersModel model = new OrdersModel();
@@ -106,7 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //update
-    public boolean upadetOrder(String name, String phone, int price, int image, String desc, String foodName, int quantity,int id){
+    public boolean upadetOrder(String name, String phone, int price, int image, String desc, String foodName, int id){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
         /*
@@ -126,7 +126,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("image", image);
         values.put("description", desc);
         values.put("foodname", foodName);
-        values.put("quantity", quantity);
+        //values.put("quantity", quantity);
         long row = database.update("orders",  values, "id="+id, null);
         if (row <=0){
             return false;

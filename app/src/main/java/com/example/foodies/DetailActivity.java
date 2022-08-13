@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity {
 
             binding.detailImage.setImageResource(image);
             binding.priceLbl.setText(String.format("%d", price));
-            binding.foodName.setText(name);
+            binding.nameLbl.setText(name);
             binding.detailDescription.setText(description);
 
 
@@ -47,8 +47,8 @@ public class DetailActivity extends AppCompatActivity {
                             price,
                             image,
                             name,
-                            description,
-                            Integer.parseInt(binding.quantity.getText().toString())
+                            description
+                          //  Integer.parseInt(binding.quantity.getText().toString())
 
                     );
 
@@ -67,8 +67,8 @@ public class DetailActivity extends AppCompatActivity {
 
             binding.detailImage.setImageResource(images);
             binding.priceLbl.setText(String.format("%d",cursor.getInt(3)));
-            binding.foodName.setText(cursor.getString(6));
-            binding.detailDescription.setText(cursor.getString(5));
+            binding.nameLbl.setText(cursor.getString(5));  //6
+            binding.detailDescription.setText(cursor.getString(6));  //5
             //quantity
             binding.nameBox.setText(cursor.getString(1));
             binding.phoneBox.setText(cursor.getString(2));
@@ -82,8 +82,7 @@ public class DetailActivity extends AppCompatActivity {
                             Integer.parseInt(binding.priceLbl.getText().toString()),
                             images,
                             binding.detailDescription.getText().toString(),
-                            binding.foodName.getText().toString(),
-                            1,
+                            binding.nameLbl.getText().toString(),
                             id
                     );
 
