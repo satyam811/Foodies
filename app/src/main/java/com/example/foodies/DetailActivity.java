@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodies.databinding.ActivityDetailBinding;
@@ -12,6 +14,8 @@ import com.example.foodies.databinding.ActivityDetailBinding;
 public class DetailActivity extends AppCompatActivity {
 
     ActivityDetailBinding binding;
+    TextView txtRating;
+    RatingBar ratingBar;
 
 
     @Override
@@ -19,6 +23,16 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        txtRating = (TextView) findViewById(R.id.txtRate);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                txtRating.setText(""+v);
+            }
+        });
 
         final DBHelper helper = new DBHelper(this);
 
