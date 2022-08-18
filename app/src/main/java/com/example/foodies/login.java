@@ -41,6 +41,11 @@ public class login extends AppCompatActivity {
         mLogin = findViewById(R.id.btnLogin);
         mRegistarBtn = findViewById(R.id.registrationpage);
 
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
+
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

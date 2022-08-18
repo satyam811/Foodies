@@ -8,16 +8,22 @@
         <entry key="..\:/minor project/app/src/main/res/drawable/edittext_background.xml" value="0.2" />
         <entry key="..\:/minor project/app/src/main/res/drawable/ic_baseline_local_grocery_store_24.xml" value="0.199" />
         <entry key="..\:/minor project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.199" />
+        <entry key="..\:/minor project/app/src/main/res/drawable/message.xml" value="0.199" />
         <entry key="..\:/minor project/app/src/main/res/layout/activity_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/minor project/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/minor project/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/minor project/app/src/main/res/layout/activity_order.xml" value="0.25416666666666665" />
         <entry key="..\:/minor project/app/src/main/res/layout/activity_registration.xml" value="0.25416666666666665" />
         <entry key="..\:/minor project/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
+        <entry key="..\:/minor project/app/src/main/res/layout/drawer_header.xml" value="0.24592391304347827" />
+        <entry key="..\:/minor project/app/src/main/res/layout/nav_header.xml" value="0.24592391304347827" />
         <entry key="..\:/minor project/app/src/main/res/layout/order_sample.xml" value="0.264" />
         <entry key="..\:/minor project/app/src/main/res/layout/sample_mainfood.xml" value="0.264" />
         <entry key="..\:/minor project/app/src/main/res/layout/slider_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/minor project/app/src/main/res/menu/drawer.xml" value="0.25416666666666665" />
         <entry key="..\:/minor project/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/minor project/app/src/main/res/menu/navigation_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/minor project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
       </map>
     </option>
   </component>

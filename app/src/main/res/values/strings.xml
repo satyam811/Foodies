@@ -1,4 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Foodies</string>
     <string name="descriptionFood">Meaty protobello mushrooms make for the perfect vegrtarian burger!</string>
+    <string name="start">Start</string>
+    <string name="close">Close</string>
+
 </resources>

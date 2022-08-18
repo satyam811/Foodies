@@ -4,22 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.foodies.Adapters.MainAdapter;
 import com.example.foodies.Adapters.SliderAdapter;
 import com.example.foodies.Models.MainModel;
 import com.example.foodies.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     ActivityMainBinding binding;
@@ -32,11 +36,28 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.vadapav
     };
 
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //navigation drawer
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navigation_view);
+
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.start,R.string.close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
         //slider view
         sliderView = findViewById(R.id.slider);
@@ -72,10 +93,33 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)){
+            return true;
+        }
         switch (item.getItemId()){
             case R.id.orders:
                 startActivity(new Intent(MainActivity.this, OrderActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.share:
+                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.cart:
+                Toast.makeText(this, "cart", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.message:
+                Toast.makeText(this, "message", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.call:
+                Toast.makeText(this, "call", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
     }
 }
