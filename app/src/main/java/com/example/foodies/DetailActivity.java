@@ -67,7 +67,7 @@ public class DetailActivity extends AppCompatActivity {
                     );
 
                     if (isInserted) {
-                        Toast.makeText(DetailActivity.this, "Data Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailActivity.this, "Order Success", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(DetailActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                     }
@@ -101,7 +101,7 @@ public class DetailActivity extends AppCompatActivity {
                     );
 
                     if(isUpdated){
-                        Toast.makeText(DetailActivity.this,"Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailActivity.this,"Order Updated", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(DetailActivity.this,"Faild", Toast.LENGTH_SHORT).show();
                     }
